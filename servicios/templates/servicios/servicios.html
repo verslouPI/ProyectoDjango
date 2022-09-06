@@ -1,0 +1,24 @@
+{% extends "MyWEBI/baseTemplate.html" %}
+
+{% block title %}
+Servicios
+{% endblock %}
+
+{% block content %}
+{% for servicio in servicios %}
+<section class="page-section clearfix">
+  <div class="container">
+    <div class="intro">
+      <a href="{{servicio.imagen.url}}" target="_blank"><img class="intro-img img-fluid mb-3 mb-lg-0 rounded"
+          src="{{servicio.imagen.url}}" alt="Imagen servicio {{servicio.titulo}}"></a>
+      <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+        <h2 class="section-heading mb-4">
+          <span class="section-heading-upper">{{servicio.titulo}}</span>
+        </h2>
+        <p class="mb-3">{{servicio.contenido}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endfor %}
+{% endblock %}

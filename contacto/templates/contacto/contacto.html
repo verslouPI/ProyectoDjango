@@ -1,0 +1,26 @@
+{% extends "MyWEBI/baseTemplate.html" %}
+
+{% block title %}
+Contacto
+{% endblock %}
+
+{% block content %}
+<div id="div-form-contact" align="center">
+  <form class="form-contact" action="" method="POST">{% csrf_token %}
+    <legend>Contactar al Administrador</legend>
+    {{formulario}}
+    <input class="btn-enviar" name="submit" type="submit" value="Enviar">
+  </form>
+  {% if request.GET.validado == "1" %}
+  <div style="margin: 5px auto;text-align: center;">
+    <p
+      style="color: rgba(24, 64, 8);background-color: greenyellow;font-size:1rem;padding:0.2rem;margin:auto;border-radius: 0.3rem;">
+      Mensaje enviado correctamente</p>
+  </div>
+  {% elif request.GET.validado == "0" %}
+  <p
+    style="color: cornflowerblue;background-color: tomato;font-size:1rem;padding:0.2rem;margin:auto;border-radius: 0.3rem;">
+    El Mensaje no se ha podido enviar: <b>{{request.GET.error}}</b></p>
+  {% endif %}
+</div>
+{% endblock %}

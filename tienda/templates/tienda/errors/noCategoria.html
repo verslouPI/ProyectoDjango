@@ -1,0 +1,49 @@
+{% extends 'tienda/cozastore/baseTienda.html' %}
+
+{% block title %}
+{{categoria}}
+{% endblock %}
+
+
+{% block noSlider %}
+<br><br><br>
+{% endblock %}
+
+
+{% block categorias %}
+<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+  <a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 {% if request.path == '/tienda/' %}how-active1{% endif %}"
+    href="{% url 'tienda' %}">
+    Inicio
+  </a>
+  {%for cat in categorias %}
+  <a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 {% if request.path|slice:'8:'|cut:'/' == cat.categoria|lower %}how-active1{% endif %}"
+    href="{% url 'categoria' cat.categoria|lower %}">
+    {{cat.categoria}}
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}
+
+{% block productos %}
+<div style="text-align:center; font-size: 2rem; margin: auto; padding: 1rem;">
+  <p style="color:cornflowerblue; font-weight: bold;">ERROR: No existe la categoria.</p>
+</div>
+{% endblock %}
+
+{% block categoriasFooter %}
+<div class="col-sm-6 col-lg-3 p-b-50">
+  <h4 class="stext-301 cl0 p-b-30">
+    Categorias
+  </h4>
+  <ul>
+    {% for cat in categorias %}
+    <li class="p-b-10">
+      <a href="{% url 'categoria' cat.categoria|lower %}" class="stext-107 cl7 hov-cl1 trans-04">
+        {{cat.categoria}}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'tienda/cozastore/baseDetallesProducto.html' %}
+
+{% block title %}
+{{categoria}}
+{% endblock %}
+
+{% block lineaNavegacion %}
+<div style="text-align:center; font-size: 2rem; margin: auto; padding: 1rem;">
+  <p style="color:cornflowerblue; font-weight: bold;">ERROR: No existe el producto.</p>
+</div>
+{% endblock %}
+
+{% block categoriasFooter %}
+<div class="col-sm-6 col-lg-3 p-b-50">
+  <h4 class="stext-301 cl0 p-b-30">
+    Categorias
+  </h4>
+  <ul>
+    {% for cat in categorias %}
+    <li class="p-b-10">
+      <a href="{% url 'categoria' cat.categoria|lower %}" class="stext-107 cl7 hov-cl1 trans-04">
+        {{cat.categoria}}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

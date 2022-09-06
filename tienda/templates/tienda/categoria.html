@@ -1,0 +1,74 @@
+{% extends 'tienda/cozastore/baseTienda.html' %}
+
+{% block title %}
+{{categoria}}
+{% endblock %}
+
+
+{% block noSlider %}
+<br><br><br>
+{% endblock %}
+
+
+{% block categorias %}
+<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+  <a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 {% if request.path == '/tienda/' %}how-active1{% endif %}"
+    href="{% url 'tienda' %}">
+    Inicio
+  </a>
+  {%for cat in categorias %}
+  <a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 {% if request.path|slice:'8:'|cut:'/' == cat.categoria|lower %}how-active1{% endif %}"
+    href="{% url 'categoria' cat.categoria|lower %}">
+    {{cat.categoria}}
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}
+
+{% block productos %}
+{% for pro in productos %}
+<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item" style="margin: 0 2rem">
+  <!-- Block2 -->
+  <div class="block2">
+    <div class="block2-pic hov-img0">
+      <img src="{{pro.imagen.url}}" alt="IMG-PRODUCT">
+
+      <a href="{% url 'producto' pro.categoria|lower pro.id %}"
+        class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+        Ver
+      </a>
+    </div>
+
+    <div class="block2-txt flex-w flex-t p-t-14">
+      <div class="block2-txt-child1 flex-col-l ">
+        <a href="{% url 'producto' pro.categoria|lower pro.id %}"
+          class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+          {{pro.producto}}
+        </a>
+
+        <span class="stext-105 cl3">
+          ${{pro.precio}} MXN
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block categoriasFooter %}
+<div class="col-sm-6 col-lg-3 p-b-50">
+  <h4 class="stext-301 cl0 p-b-30">
+    Categorias
+  </h4>
+  <ul>
+    {% for cat in categorias %}
+    <li class="p-b-10">
+      <a href="{% url 'categoria' cat.categoria|lower %}" class="stext-107 cl7 hov-cl1 trans-04">
+        {{cat.categoria}}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
