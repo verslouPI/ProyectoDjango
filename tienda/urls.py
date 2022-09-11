@@ -1,8 +1,10 @@
-from django.urls import path
+from xml.etree.ElementInclude import include
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
-  path('', views.Tienda.tienda, name="tienda"),
-  path('<cat>/', views.Tienda.categoria, name="categoria"),
-  path('<cat>/<producto>/', views.Tienda.producto, name="producto"),
+  path('', views.tienda, name="tienda"),
+  path('carrito/', include("carrito.urls"), name="urls_carrito"),
+  path('<cat>/', views.categoria, name="categoria"),
+  path('<cat>/<producto>/', views.producto, name="producto"),
 ]
